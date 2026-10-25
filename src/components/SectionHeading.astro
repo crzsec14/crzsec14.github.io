@@ -1,0 +1,15 @@
+---
+interface Props {
+  index: string;
+  title: string;
+  command: string;
+}
+const { index, title, command } = Astro.props;
+---
+
+<div class="mb-10">
+  <p class="font-mono text-sm text-cyan">
+    <span class="text-muted">{index}.</span> $ {command}
+  </p>
+  <h2 class="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">{title}</h2>
+</div>

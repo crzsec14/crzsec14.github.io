@@ -1,0 +1,23 @@
+---
+import { awards } from '../data/profile';
+import SectionHeading from './SectionHeading.astro';
+---
+
+<section id="awards" class="reveal mx-auto max-w-6xl px-4 py-20 sm:px-6">
+  <SectionHeading index="05" command="grep -r 'award' ./life" title="Awards" />
+  <ul class="grid gap-5 md:grid-cols-3">
+    {
+      awards.map((a) => (
+        <li class="card flex gap-4 p-5">
+          <span class="text-2xl" aria-hidden="true">🏆</span>
+          <div>
+            <h3 class="font-semibold">{a.title}</h3>
+            <p class="mt-1 font-mono text-xs text-muted">
+              {a.org} · {a.date}
+            </p>
+          </div>
+        </li>
+      ))
+    }
+  </ul>
+</section>

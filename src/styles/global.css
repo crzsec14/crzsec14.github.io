@@ -1,0 +1,91 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+
+  --color-bg: #07070c;
+  --color-surface: #0f0f18;
+  --color-surface-2: #161624;
+  --color-line: #23233a;
+  --color-ink: #e8e8f2;
+  --color-muted: #9a9ab5;
+  --color-violet: #a78bfa;
+  --color-cyan: #22d3ee;
+  --color-green: #4ade80;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: color-mix(in oklab, var(--color-violet) 40%, transparent);
+}
+
+/* Faint grid behind the whole page */
+.bg-grid {
+  background-image:
+    linear-gradient(to right, color-mix(in oklab, var(--color-line) 45%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklab, var(--color-line) 45%, transparent) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse at top, black 20%, transparent 70%);
+}
+
+.text-gradient {
+  background: linear-gradient(90deg, var(--color-violet), var(--color-cyan));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Card with a gradient border that lights up on hover */
+.card {
+  position: relative;
+  border: 1px solid var(--color-line);
+  background: color-mix(in oklab, var(--color-surface) 85%, transparent);
+  border-radius: 0.875rem;
+  transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+}
+.card:hover {
+  border-color: color-mix(in oklab, var(--color-violet) 55%, var(--color-line));
+  box-shadow: 0 0 0 1px color-mix(in oklab, var(--color-violet) 15%, transparent),
+    0 18px 50px -20px color-mix(in oklab, var(--color-violet) 45%, transparent);
+  transform: translateY(-2px);
+}
+
+.cursor::after {
+  content: '_';
+  margin-left: 2px;
+  color: var(--color-cyan);
+  animation: blink 1s steps(1) infinite;
+}
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+/* Sections fade up as they scroll in (class added by script) */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .cursor::after { animation: none; }
+  .card, .card:hover { transition: none; transform: none; }
+}

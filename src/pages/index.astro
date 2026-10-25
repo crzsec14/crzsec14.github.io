@@ -1,0 +1,30 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Hero from '../components/Hero.astro';
+import About from '../components/About.astro';
+import Experience from '../components/Experience.astro';
+import Featured from '../components/Featured.astro';
+import Skills from '../components/Skills.astro';
+import Awards from '../components/Awards.astro';
+import SideProjects from '../components/SideProjects.astro';
+import Contact from '../components/Contact.astro';
+import { profile } from '../data/profile';
+---
+
+<Layout>
+  <Nav />
+  <main>
+    <Hero />
+    <About />
+    <Experience />
+    <Featured />
+    <Skills />
+    <Awards />
+    <SideProjects />
+    <Contact />
+  </main>
+  <footer class="mx-auto max-w-6xl border-t border-line px-4 py-8 font-mono text-xs text-muted sm:px-6">
+    <p>© {new Date().getFullYear()} {profile.displayName} · built with Astro + Tailwind</p>
+  </footer>
+</Layout>

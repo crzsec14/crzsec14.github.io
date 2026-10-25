@@ -1,0 +1,126 @@
+---
+import { profile } from '../data/profile';
+import NetworkCanvas from './NetworkCanvas.astro';
+import Portrait from './Portrait.astro';
+
+const chips = ['C#', 'ASP.NET Core', 'Angular', 'React', 'Flutter', 'MS SQL', 'Azure'];
+---
+
+<section id="top" class="relative">
+  <NetworkCanvas />
+  <div class="relative mx-auto grid max-w-6xl items-center gap-16 px-4 pt-16 pb-24 sm:px-6 md:grid-cols-[1fr_auto] md:pt-24 md:pb-32">
+    <div>
+      <p class="fade-up inline-flex items-center gap-2 rounded-full border border-line bg-surface/70 px-3 py-1 font-mono text-xs text-muted">
+        <span class="relative flex h-2 w-2">
+          <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-green opacity-60 motion-reduce:animate-none"></span>
+          <span class="relative inline-flex h-2 w-2 rounded-full bg-green"></span>
+        </span>
+        open to opportunities · {profile.location}
+      </p>
+
+      <h1 class="fade-up mt-6 font-mono text-lg text-muted" style="animation-delay: 0.1s">
+        <span class="text-cyan">&gt;</span> Hi, I'm <span class="text-ink">{profile.nickname}</span>
+      </h1>
+      <p
+        class="fade-up mt-3 min-h-[2.5em] text-4xl leading-tight font-extrabold tracking-tight sm:min-h-[1.25em] sm:text-6xl"
+        style="animation-delay: 0.2s"
+      >
+        <span class="text-gradient" data-typed={JSON.stringify(profile.roles)}>{profile.roles[0]}</span><span
+          class="type-caret"
+          aria-hidden="true"></span>
+      </p>
+      <p class="fade-up mt-6 max-w-2xl text-lg leading-relaxed text-muted" style="animation-delay: 0.3s">{profile.tagline}</p>
+
+      <ul class="fade-up mt-6 flex flex-wrap gap-2 font-mono text-xs" style="animation-delay: 0.4s" aria-label="Core stack">
+        {chips.map((c) => <li class="rounded-md border border-line bg-surface-2 px-2.5 py-1 text-ink/90">{c}</li>)}
+      </ul>
+
+      <div class="fade-up mt-9 flex flex-wrap gap-3" style="animation-delay: 0.5s">
+        <a
+          href="#work"
+          class="rounded-lg bg-gradient-to-r from-violet to-cyan px-5 py-2.5 text-sm font-semibold text-bg transition-opacity hover:opacity-90"
+        >
+          View my work
+        </a>
+        {
+          profile.resumeUrl && (
+            <a
+              href={profile.resumeUrl}
+              class="rounded-lg border border-line bg-surface px-5 py-2.5 text-sm font-semibold transition-colors hover:border-violet"
+              download
+            >
+              Download resume
+            </a>
+          )
+        }
+        <a
+          href={profile.links.upwork}
+          target="_blank"
+          rel="noopener"
+          class="rounded-lg border border-line bg-surface px-5 py-2.5 text-sm font-semibold transition-colors hover:border-green hover:text-green"
+        >
+          Hire me on Upwork ↗
+        </a>
+      </div>
+    </div>
+
+    <Portrait />
+  </div>
+</section>
+
+<style>
+  .fade-up {
+    animation: fade-up 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  }
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: none; }
+  }
+  .type-caret {
+    display: inline-block;
+    width: 0.08em;
+    height: 0.9em;
+    margin-left: 0.08em;
+    vertical-align: -0.08em;
+    background: var(--color-cyan);
+    animation: caret 1s steps(1) infinite;
+  }
+  @keyframes caret {
+    50% { opacity: 0; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .fade-up, .type-caret { animation: none; }
+  }
+</style>
+
+<script>
+  // Deletes and types each role in turn. Skipped for reduced motion.
+  const el = document.querySelector<HTMLElement>('[data-typed]');
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (el && !reduced) {
+    const roles: string[] = JSON.parse(el.dataset.typed || '[]');
+    let i = 0;
+    let text = roles[0];
+    let deleting = true;
+    const tick = () => {
+      let delay = deleting ? 35 : 70;
+      if (deleting) {
+        text = text.slice(0, -1);
+        if (!text) {
+          deleting = false;
+          i = (i + 1) % roles.length;
+        }
+      } else {
+        text = roles[i].slice(0, text.length + 1);
+        if (text === roles[i]) {
+          deleting = true;
+          delay = 2200;
+        }
+      }
+      // Zero-width space keeps the line height when the text is empty.
+      el.textContent = text || '​';
+      setTimeout(tick, delay);
+    };
+    setTimeout(tick, 2600);
+  }
+</script>

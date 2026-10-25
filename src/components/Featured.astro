@@ -1,0 +1,32 @@
+---
+import { featured } from '../data/profile';
+import SectionHeading from './SectionHeading.astro';
+---
+
+<section id="work" class="reveal mx-auto max-w-6xl px-4 py-20 sm:px-6">
+  <SectionHeading index="03" command="ls ./featured-work" title="Featured work" />
+  <div class="grid gap-5 md:grid-cols-2">
+    {
+      featured.map((f) => (
+        <article class="card flex flex-col overflow-hidden">
+          <div class="flex items-center justify-between border-b border-line bg-surface-2/60 px-4 py-2.5 font-mono text-xs">
+            <span class="text-cyan">{f.file}</span>
+            <span class="text-muted">{f.company}</span>
+          </div>
+          <div class="flex flex-1 flex-col p-5">
+            <h3 class="text-lg font-semibold">{f.title}</h3>
+            <p class="mt-3 flex-1 text-sm leading-relaxed text-muted">{f.summary}</p>
+            <ul class="mt-5 flex flex-wrap gap-1.5 font-mono text-[11px]">
+              {f.stack.map((s) => (
+                <li class="rounded bg-violet/10 px-2 py-0.5 text-violet">{s}</li>
+              ))}
+            </ul>
+          </div>
+        </article>
+      ))
+    }
+  </div>
+  <p class="mt-6 font-mono text-xs text-muted">
+    // company projects — happy to walk through the details in an interview
+  </p>
+</section>

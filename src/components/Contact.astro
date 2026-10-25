@@ -1,0 +1,47 @@
+---
+import { profile } from '../data/profile';
+import SectionHeading from './SectionHeading.astro';
+
+const channels = [
+  { label: 'email', value: profile.email, href: `mailto:${profile.email}` },
+  { label: 'linkedin', value: 'in/cess-c', href: profile.links.linkedin },
+  { label: 'github', value: 'crzsec14', href: profile.links.github },
+  { label: 'upwork', value: 'princessmayc2', href: profile.links.upwork },
+];
+---
+
+<section id="contact" class="reveal mx-auto max-w-6xl px-4 py-20 sm:px-6">
+  <SectionHeading index="07" command="./contact.sh" title="Let's work together" />
+  <div class="card overflow-hidden">
+    <div class="grid gap-10 p-6 sm:p-10 md:grid-cols-2">
+      <div>
+        <p class="text-lg leading-relaxed text-muted">
+          I'm open to full-time full-stack and .NET roles, and to freelance projects. The quickest way to reach me is email.
+        </p>
+        <a
+          href={`mailto:${profile.email}`}
+          class="mt-6 inline-block rounded-lg bg-gradient-to-r from-violet to-cyan px-5 py-2.5 text-sm font-semibold text-bg transition-opacity hover:opacity-90"
+        >
+          Email me
+        </a>
+      </div>
+      <ul class="space-y-3 font-mono text-sm">
+        {
+          channels.map((c) => (
+            <li>
+              <a
+                href={c.href}
+                target={c.href.startsWith('mailto:') ? undefined : '_blank'}
+                rel="noopener"
+                class="group flex items-center justify-between gap-4 rounded-lg border border-line px-4 py-3 transition-colors hover:border-violet"
+              >
+                <span class="text-violet">{c.label}</span>
+                <span class="truncate text-muted transition-colors group-hover:text-ink">{c.value}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>

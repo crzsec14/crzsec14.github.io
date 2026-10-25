@@ -1,0 +1,23 @@
+---
+import { profile, stats } from '../data/profile';
+import SectionHeading from './SectionHeading.astro';
+---
+
+<section id="about" class="reveal mx-auto max-w-6xl px-4 py-20 sm:px-6">
+  <SectionHeading index="01" command="cat about.md" title="About me" />
+  <div class="grid gap-10 md:grid-cols-[3fr_2fr]">
+    <div class="space-y-5 text-lg leading-relaxed text-muted">
+      {profile.about.map((p) => <p>{p}</p>)}
+    </div>
+    <dl class="grid grid-cols-3 gap-3 self-start md:grid-cols-1">
+      {
+        stats.map((s) => (
+          <div class="card flex flex-col-reverse p-4 sm:p-5">
+            <dt class="mt-1 font-mono text-xs text-muted">{s.label}</dt>
+            <dd class="text-gradient text-3xl font-extrabold sm:text-4xl">{s.value}</dd>
+          </div>
+        ))
+      }
+    </dl>
+  </div>
+</section>

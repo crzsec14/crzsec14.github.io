@@ -1,0 +1,56 @@
+---
+import { experience } from '../data/profile';
+import SectionHeading from './SectionHeading.astro';
+
+const jobs = experience.filter((j) => !j.draft);
+// Short fake commit hashes for the git-log look.
+const hash = (s: string) =>
+  [...s].reduce((h, c) => (h * 31 + c.charCodeAt(0)) >>> 0, 7).toString(16).padStart(7, '0').slice(0, 7);
+---
+
+<section id="experience" class="reveal mx-auto max-w-6xl px-4 py-20 sm:px-6">
+  <SectionHeading index="02" command="git log --career" title="Experience" />
+  <ol class="relative ml-1.5 border-l border-line">
+    {
+      jobs.map((job, i) => (
+        <li class="relative pb-12 pl-8 last:pb-0">
+          <span
+            class:list={[
+              'absolute top-1.5 -left-[7px] h-3.5 w-3.5 rounded-full border-2 border-bg',
+              i === 0 ? 'bg-green shadow-[0_0_12px_#4ade80]' : 'bg-violet',
+            ]}
+            aria-hidden="true"
+          />
+          <p class="font-mono text-xs text-muted">
+            <span class="text-[#febc2e]">commit {hash(job.company)}</span>
+            {i === 0 && <span class="text-cyan"> (HEAD -&gt; main)</span>}
+            {job.start && (
+              <>
+                <span class="mx-2">·</span>
+                {job.start} — {job.end}
+              </>
+            )}
+          </p>
+          <h3 class="mt-2 text-xl font-semibold">
+            {job.role} <span class="text-violet">@ {job.company}</span>
+          </h3>
+          <ul class="mt-3 max-w-3xl space-y-2 text-muted">
+            {job.highlights.map((h) => (
+              <li class="flex gap-3">
+                <span class="mt-0.5 font-mono text-green" aria-hidden="true">+</span>
+                <span>{h}</span>
+              </li>
+            ))}
+          </ul>
+          {job.stack && job.stack.length > 0 && (
+            <ul class="mt-4 flex flex-wrap gap-2 font-mono text-xs">
+              {job.stack.map((s) => (
+                <li class="rounded border border-line px-2 py-0.5 text-cyan/90">{s}</li>
+              ))}
+            </ul>
+          )}
+        </li>
+      ))
+    }
+  </ol>
+</section>

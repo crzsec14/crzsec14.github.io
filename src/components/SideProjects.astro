@@ -1,0 +1,28 @@
+---
+import { profile, sideProjects } from '../data/profile';
+import SectionHeading from './SectionHeading.astro';
+---
+
+<section id="projects" class="reveal mx-auto max-w-6xl px-4 py-20 sm:px-6">
+  <SectionHeading index="06" command="gh repo list" title="Side projects" />
+  <div class="grid gap-5 sm:grid-cols-2">
+    {
+      sideProjects.map((p) => (
+        <a href={p.url} target="_blank" rel="noopener" class="card group block p-5">
+          <div class="flex items-center justify-between font-mono text-sm">
+            <span class="text-ink">
+              <span class="text-muted">crzsec14/</span>
+              {p.name}
+            </span>
+            <span class="text-muted transition-colors group-hover:text-cyan" aria-hidden="true">↗</span>
+          </div>
+          <p class="mt-3 text-sm text-muted">{p.description}</p>
+          <p class="mt-4 font-mono text-xs text-violet">● {p.lang}</p>
+        </a>
+      ))
+    }
+  </div>
+  <a href={profile.links.github} target="_blank" rel="noopener" class="mt-6 inline-block font-mono text-sm text-cyan hover:underline">
+    more on GitHub →
+  </a>
+</section>
