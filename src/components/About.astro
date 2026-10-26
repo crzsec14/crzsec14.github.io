@@ -7,7 +7,13 @@ import SectionHeading from './SectionHeading.astro';
   <SectionHeading index="01" command="cat about.md" title="About me" />
   <div class="grid gap-10 md:grid-cols-[3fr_2fr]">
     <div class="space-y-5 text-lg leading-relaxed text-muted">
-      {profile.about.map((p) => <p>{p}</p>)}
+      {
+        profile.about.map((p) => (
+          <p>
+            {p.split('**').map((part, i) => (i % 2 ? <strong class="font-semibold text-ink">{part}</strong> : part))}
+          </p>
+        ))
+      }
     </div>
     <dl class="grid grid-cols-3 gap-3 self-start md:grid-cols-1">
       {

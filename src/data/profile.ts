@@ -8,15 +8,18 @@ export const profile = {
   handle: 'cess-cruz',
   title: 'Senior .NET Developer',
   // Cycled by the typing animation in the hero; the first one shows without JavaScript.
-  roles: ['Senior .NET Developer', 'Full-stack Engineer', 'Integration Engineer', 'Flutter Developer'],
+  roles: ['Senior .NET Engineer', 'Full-stack Engineer', 'Integration Engineer'],
   location: 'Philippines',
   yearsExperience: '9+',
   tagline:
-    'I build and ship production web apps end to end — C# and ASP.NET Core APIs, Angular frontends, SQL Server, and the Azure pipelines that deploy them.',
+    'I build and ship production web apps end to end — C# and ASP.NET Core APIs, Angular/React frontends, SQL Server, and the Azure pipelines that deploy them.',
+  // Wrap text in **double asterisks** to make it bold.
   about: [
-    "I'm Cess, a Senior .NET Developer with 9+ years of hands-on experience building scalable, high-performance applications. I've worked on enterprise systems for airline catering, healthcare, document tracking, asset inventory, resource allocation, CRM and ride-hailing — including the Xpress Super App, a large-scale ride-hailing and multi-service platform. I also build cross-platform mobile apps with Flutter.",
-    "I don't just write code — I build clean, maintainable systems that last. I apply SOLID principles, the Repository Pattern and Dependency Injection so systems stay scalable, testable and easy to extend, whether I'm designing ASP.NET Core APIs, building Angular or React frontends, optimizing MSSQL queries or deploying to Azure.",
-    "Today I build integration middleware at Tonic, keeping HR, payroll and accounting platforms like Xero, MYOB and Stripe in sync. I'm at my best in fast-paced teams, modernizing systems or building products from scratch — the same focus and speed that earned podium finishes at the ADB-AIM Hackathon (500+ global entries) and Accenture's Health Industry Hackathon.",
+    "I'm Cess, a Senior .NET Developer with 9+ years of experience designing and delivering scalable, high-performance software solutions. My expertise spans enterprise applications across healthcare, airline catering, document management, asset inventory, resource allocation, CRM, and ride-hailing, including the Xpress Super App, a large-scale ride-hailing and multi-service platform. I also have experience developing cross-platform mobile applications using Flutter.",
+    "I go beyond writing code—I build robust, maintainable, and future-ready systems. I apply **Clean Architecture, SOLID principles, Repository Pattern, and Dependency Injection** to create solutions that are scalable, testable, and easy to extend. My technical expertise includes C#, .NET, ASP.NET Core, RESTful APIs, React, Angular, MSSQL performance optimization, and Azure deployment and support.",
+    "At Tonic, I develop C# integration middleware and React applications that connect HR, payroll, and accounting platforms with systems such as Xero and MYOB. I thrive on solving complex technical challenges, modernizing legacy applications, streamlining integrations, and delivering reliable solutions in fast-paced environments.",
+    "My problem-solving skills and ability to deliver under pressure have earned me podium finishes at the ADB-AIM Hackathon, competing against 500+ global entries, and Accenture's Health Industry Hackathon.",
+    "**My goal is to turn complex business requirements into clean, efficient, and maintainable software that delivers lasting value.**",
   ],
   avatar: '/avatar.jpg',
   email: 'princess.may.y.cruz@gmail.com',
@@ -32,7 +35,7 @@ export const profile = {
 
 export const stats = [
   { value: '9+', label: 'years shipping software' },
-  { value: '7', label: 'companies & teams' },
+  { value: '7+', label: 'companies & teams' },
   { value: '2', label: 'hackathon podiums' },
 ];
 
@@ -50,7 +53,7 @@ export type Job = {
 
 export const experience: Job[] = [
   {
-    company: 'Tonic',
+    company: 'Tonic Technologies',
     role: 'Full-stack Software Engineer',
     start: 'Feb 2026',
     end: 'Present',
@@ -66,7 +69,7 @@ export const experience: Job[] = [
     company: 'Xpress Super App',
     role: 'Full-stack Software Engineer',
     start: 'Mar 2025',
-    end: 'Present',
+    end: 'Mar 2026',
     highlights: [
       'Design and ship new features and enhancements across the stack.',
       'Drive bug fixing, refactoring and codebase optimization.',
@@ -173,8 +176,6 @@ export const awards = [
 ];
 
 export const sideProjects = [
-  { name: 'GameStore.Api', lang: 'C#', description: 'ASP.NET Core minimal API for a game catalog — endpoints, DTOs, mapping and a SQLite database.', url: 'https://github.com/crzsec14/GameStore.Api' },
-  { name: 'Todo-App', lang: 'C# · Angular', description: 'Clean Architecture .NET + Angular todo app, with features like per-item colors and tag filtering added on top.', url: 'https://github.com/crzsec14/Todo-App' },
-  { name: 'loan', lang: 'C#', description: 'Loan app split into data, repository, service and helper layers.', url: 'https://github.com/crzsec14/loan' },
-  { name: 'RealEstate', lang: 'C# · JavaScript', description: 'Real-estate solution with separate API, core and web projects.', url: 'https://github.com/crzsec14/RealEstate' },
+  { name: 'AgriConnect', lang: 'C# · React · SQL', description: 'A full-stack platform that helps agricultural offices run farmer events, from registration and requirement approvals to QR code check-in, announcements and attendance reports.' },
+  { name: 'QualifyHealth', lang: 'C# · React · SQL · Azure', description: 'Led the migration and modernization of a legacy healthcare application into a new React and .NET Core solution, improving maintainability, performance, and user experience while preserving existing functionality and integrating with SQL Server stored procedures..' }
 ];
